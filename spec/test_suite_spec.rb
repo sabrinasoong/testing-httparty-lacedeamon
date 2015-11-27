@@ -59,6 +59,18 @@ describe "Test Suite sends a get request" do
     expect(g.message).to eq "OK"
   end
   
+  it "should not be able to get a non-existing todo" do
+    #Setup
+    p = HTTParty.post "http://lacedeamon.spartaglobal.com/todos", query: {title: "Sabrina's been testing", due: "2015-11-27"}
+    HTTParty.delete "http://lacedeamon.spartaglobal.com/todos/#{p["id"]}"
+    #Execute
+    h = HTTParty.get "http://lacedeamon.spartaglobal.com/todos/#{p["id"]}", query: {title: "This ain't gonna work!", due: "2020-10-10"}
+    #Verify
+    expect(h.to_s).to eq ""
+    expect(h.code).to eq 404
+    expect(h.message).to eq "Not Found"
+  end
+  
 end
 
 describe "Test Suite sends a put request" do
