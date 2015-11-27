@@ -7,7 +7,7 @@ How To Use
 ----------
 
 1. Open Git Bash
-2. Copy `Bundle install` into Git Bash
+2. Copy `bundle install` into Git Bash
 3. Run `rspec` in Git Bash
 
 
